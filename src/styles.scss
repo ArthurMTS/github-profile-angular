@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-bg: #1e1e2f;
+  --secondary-bg: #27293d;
+  --primary-color: #42a5f5;
+  --secondary-color: #29b6f6;
+  --text-primary: #e6edf3;
+  --text-secondary: #7d8590;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--primary-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
