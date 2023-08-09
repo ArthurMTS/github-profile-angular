@@ -1,4 +1,4 @@
-import { Component, /*OnInit*/ } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
 import { ApiService, iUser } from "../api.service";
 
 @Component({
@@ -6,26 +6,35 @@ import { ApiService, iUser } from "../api.service";
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'],
 })
-export class SearchBar /*implements OnInit*/ {
-  username = "";
+export class SearchBar {
+  constructor(private apiService: ApiService) {}
+
   user: iUser = {} as iUser;
   notFound = false;
 
-  constructor(private apiService: ApiService) {}
+  @Output() newItemEvent = new EventEmitter<iUser>();
 
-  /*ngOnInit() {
+  sendUser(user: iUser) {
+    this.newItemEvent.emit(user);
+  }
+
+  onSubmit(event: any) {
+    event.preventDefault();
+    const username = event.srcElement[0]?.value;
     try {
-      this.apiService.getUser("ArthurMTS").subscribe((data: iUser) => {
-        this.user = data;
-        if (data?.message === "Not Found") {
-          this.found = true;
-          return;
+      this.apiService.getUser(username).subscribe((data: any) => {
+        if (data?.name) {
+          this.user = data;
+          this.notFound = false;
+        } else {
+          this.user = {} as iUser;
+          this.notFound = true;
         }
-        this.found = false;
+        this.sendUser(this.user);
       });
     } catch(err) {
       console.error(err);
-      this.found = true;
+      this.notFound = true;
     }
-  }*/
+  }
 }

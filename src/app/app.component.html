@@ -1,15 +1,18 @@
-<search-bar />
+<search-bar (newItemEvent)="getUser($event)" />
 
-<main>
-  <img src="https://avatars.githubusercontent.com/u/73958393?v=4" alt="username">
-  <h2>Arthur Matheus da Silva</h2>
-  <p class="username">@ArthurMTS</p>
+<main *ngIf="user?.name">
+  <a href={{user.html_url}} target="_blank">
+    <img src={{user.avatar_url}} alt={{user.name}}>
+  </a>
+  <h2>{{user.name}}</h2>
+  <a href={{user.html_url}} target="_blank">
+    <p class="username">@{{user.login}}</p>
+  </a>
   <p class="bio">
-    Software engineering student at Universidade Federal do Ceará.
+    {{user.bio}}
   </p>
 
   <ul>
-    <display-data />
     <display-data />
     <display-data />
     <display-data />

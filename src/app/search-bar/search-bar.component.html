@@ -1,5 +1,5 @@
-<form class="form">
-  <input type="text" name="username" id="username" placeholder="Inform Username" required>
-  <button type="submit"><i class='bx bx-search-alt-2'></i></button>
+<form class="form" (submit)="onSubmit($event)">
+  <input type="text" placeholder="Inform Username" required>
+  <button type="submit" (click)="sendUser(this.user)"><i class='bx bx-search-alt-2'></i></button>
   <p *ngIf="notFound;">Sorry, could not find the user, verify the name and try again</p>
 </form>

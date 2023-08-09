@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { iUser } from './api.service';
 
 @Component({
   selector: 'app-root',
@@ -6,4 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  user: iUser = {} as iUser;
+
+  getUser(user: iUser) {
+    this.user = user;
+  }
 }
