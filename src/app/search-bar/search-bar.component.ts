@@ -18,15 +18,16 @@ export class SearchBar {
     this.newItemEvent.emit(user);
   }
 
+  setError(error: boolean) {
+    this.notFound = error;
+  }
+
   onSubmit(event: any) {
     event.preventDefault();
     const username = event.srcElement[0]?.value;
-    this.notFound = true;
-    const something = this.apiService.getUser(username)?.subscribe((data: any) => {
+    this.apiService.getUser(username, this.setError.bind(this)).subscribe((data: any) => {
       this.user = data;
-      this.notFound = false;
       this.sendUser(this.user);
     });
-    console.log(something);
   }
 }

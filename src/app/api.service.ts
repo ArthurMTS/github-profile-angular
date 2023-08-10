@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 export interface iUser {
   id: string;
@@ -18,12 +18,21 @@ export interface iUser {
   providedIn: 'root'
 })
 export class ApiService {
-
   apiUrl = 'https://api.github.com/users';
+  error = false;
 
   constructor(private http: HttpClient) { }
 
-  getUser(username: string): Observable<iUser> {
-    return this.http.get<iUser>(`${this.apiUrl}/${username}`);
+  private handleError(setError: (error: boolean) => void) {
+    setError(true);
+    return throwError(() => new Error('User not found'));
+  }
+
+  getUser(username: string, setError: (error: boolean) => void): Observable<iUser> {
+    setError(false);
+    return this.http.get<iUser>(`${this.apiUrl}/${username}`)
+      .pipe(
+        catchError(() => this.handleError(setError))
+      );
   }
 }
