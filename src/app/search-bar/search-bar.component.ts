@@ -21,20 +21,12 @@ export class SearchBar {
   onSubmit(event: any) {
     event.preventDefault();
     const username = event.srcElement[0]?.value;
-    try {
-      this.apiService.getUser(username).subscribe((data: any) => {
-        if (data?.name) {
-          this.user = data;
-          this.notFound = false;
-        } else {
-          this.user = {} as iUser;
-          this.notFound = true;
-        }
-        this.sendUser(this.user);
-      });
-    } catch(err) {
-      console.error(err);
-      this.notFound = true;
-    }
+    this.notFound = true;
+    const something = this.apiService.getUser(username)?.subscribe((data: any) => {
+      this.user = data;
+      this.notFound = false;
+      this.sendUser(this.user);
+    });
+    console.log(something);
   }
 }

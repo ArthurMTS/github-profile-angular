@@ -13,8 +13,8 @@
   </p>
 
   <ul>
-    <display-data />
-    <display-data />
-    <display-data />
+    <display-data title="Repositories" [value]="user.public_repos" />
+    <display-data title="Followers" [value]="user.followers" />
+    <display-data title="Following" [value]="user.following" />
   </ul>
 </main>

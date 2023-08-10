@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
   selector: 'display-data',
@@ -6,4 +6,6 @@ import { Component } from "@angular/core";
   styleUrls: ['./display-data.component.scss'],
 })
 export class DisplayData {
+  @Input() title = "";
+  @Input() value = 0;
 }
