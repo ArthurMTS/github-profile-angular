@@ -1,20 +1,28 @@
 <search-bar (newItemEvent)="getUser($event)" />
 
 <main *ngIf="user?.name">
-  <a href={{user.html_url}} target="_blank">
-    <img src={{user.avatar_url}} alt={{user.name}}>
+  <a href="{{ user.html_url }}" target="_blank">
+    <img src="{{ user.avatar_url }}" alt="{{ user.name }}" />
   </a>
-  <h2>{{user.name}}</h2>
-  <a href={{user.html_url}} target="_blank">
-    <p class="username">@{{user.login}}</p>
+  <h2>{{ user.name }}</h2>
+  <a href="{{ user.html_url }}" target="_blank">
+    <p class="username">@{{ user.login }}</p>
   </a>
   <p class="bio">
-    {{user.bio}}
+    {{ user.bio }}
   </p>
 
   <ul>
-    <display-data title="Repositories" [value]="user.public_repos" />
-    <display-data title="Followers" [value]="user.followers" />
-    <display-data title="Following" [value]="user.following" />
+    <display-data
+      icon="bxs-book-open"
+      title="Repositories"
+      [value]="user.public_repos"
+    />
+    <display-data
+      icon="bxs-user-circle"
+      title="Following"
+      [value]="user.following"
+    />
+    <display-data icon="bxs-star" title="Followers" [value]="user.followers" />
   </ul>
 </main>

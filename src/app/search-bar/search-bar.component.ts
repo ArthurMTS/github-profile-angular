@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter } from "@angular/core";
+
 import { ApiService, iUser } from "../api.service";
 
 @Component({
@@ -8,8 +9,7 @@ import { ApiService, iUser } from "../api.service";
 })
 export class SearchBar {
   constructor(private apiService: ApiService) {}
-
-  user: iUser = {} as iUser;
+  
   notFound = false;
 
   @Output() newItemEvent = new EventEmitter<iUser>();
@@ -26,8 +26,7 @@ export class SearchBar {
     event.preventDefault();
     const username = event.srcElement[0]?.value;
     this.apiService.getUser(username, this.setError.bind(this)).subscribe((data: any) => {
-      this.user = data;
-      this.sendUser(this.user);
+      this.sendUser(data);
     });
   }
 }
