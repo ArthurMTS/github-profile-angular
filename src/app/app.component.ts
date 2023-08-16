@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { iUser } from './api.service';
+import { iUser } from '../models/user.interface';
 
 @Component({
   selector: 'app-root',

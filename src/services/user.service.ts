@@ -2,22 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 
-export interface iUser {
-  id: string;
-  login: string;
-  name: string;
-  bio: string;
-  'avatar_url': string;
-  'html_url': string;
-  'public_repos': number;
-  followers: number;
-  following: number;
-}  
+import { iUser } from 'src/models/user.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class UserService {
   apiUrl = 'https://api.github.com/users';
   error = false;
 

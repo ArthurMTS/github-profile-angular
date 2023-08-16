@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from "@angular/core";
 
-import { ApiService, iUser } from "../api.service";
+import { UserService } from "../../services/user.service";
+import { iUser } from "src/models/user.interface";
 
 @Component({
   selector: 'search-bar',
@@ -8,7 +9,7 @@ import { ApiService, iUser } from "../api.service";
   styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBar {
-  constructor(private apiService: ApiService) {}
+  constructor(private userService: UserService) {}
   
   notFound = false;
 
@@ -25,7 +26,7 @@ export class SearchBar {
   onSubmit(event: any) {
     event.preventDefault();
     const username = event.srcElement[0]?.value;
-    this.apiService.getUser(username, this.setError.bind(this)).subscribe((data: any) => {
+    this.userService.getUser(username, this.setError.bind(this)).subscribe((data: iUser) => {
       this.sendUser(data);
     });
   }
